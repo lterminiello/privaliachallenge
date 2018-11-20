@@ -1,0 +1,87 @@
+ext {
+
+    //Version
+    supportVersion = '28.0.0'
+    archLifecycleVersion = '1.1.1'
+    constaintVersion = '1.1.3'
+
+
+    retrofitVersion = '2.5.0'
+    rxAndroidVersion = '2.1.0'
+    rxJavaVersion = '2.2.3'
+
+    glideVersion = '4.8.0'
+    circleImageVersion = '1.3.0'
+
+    junitVersion = '4.12'
+    mockitoVersion = '2.8.47'
+
+    stethoVersion = '1.4.2'
+
+
+    //Packages
+    supportPackage = 'com.android.support'
+    constaintSupportPackage = 'com.android.support.constraint'
+
+    retrofitPackage = 'com.squareup.retrofit2'
+    archLifecycle = 'android.arch.lifecycle'
+    archCore = 'android.arch.core'
+
+
+    reactivePackage = 'io.reactivex.rxjava2'
+
+    glidePackage = 'com.github.bumptech.glide'
+
+    junitPackage = 'junit'
+    mockitoPackage = 'org.mockito'
+
+    facebookStethoPackage = 'com.facebook.stetho'
+
+    supportDependencies = [
+
+            design      : buildDependency(supportPackage, 'design', supportVersion),
+            recyclerView: buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
+            cardView    : buildDependency(supportPackage, 'cardview-v7', supportVersion),
+            appCompat   : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
+            support     : buildDependency(supportPackage, 'support-v4', supportVersion),
+
+            constraint  : buildDependency(constaintSupportPackage, 'constraint-layout', constaintVersion)
+    ]
+
+    archLifecycleDependencies = [
+
+            extensions: buildDependency(archLifecycle, 'extensions', archLifecycleVersion),
+            test      : buildDependency(archCore, 'core-testing', archLifecycleVersion),
+
+    ]
+
+    retrofitDependencies = [
+
+            retrofit     : buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
+            gson         : buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
+            rxAdapterJava: buildDependency(retrofitPackage, 'adapter-rxjava2', retrofitVersion)
+    ]
+
+    rxDependencies = [
+
+            rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion),
+            rxJava   : buildDependency(reactivePackage, 'rxjava', rxJavaVersion)
+    ]
+
+    stetho = buildDependency(facebookStethoPackage, 'stetho', stethoVersion)
+
+    glide = buildDependency(glidePackage, 'glide', glideVersion)
+
+    stethoOkhttp = buildDependency(facebookStethoPackage, 'stetho-okhttp3', stethoVersion)
+
+    testingDependencies = [
+
+            junit  : buildDependency(junitPackage, 'junit', junitVersion),
+            mockito: buildDependency(mockitoPackage, 'mockito-core', mockitoVersion)
+
+    ]
+}
+
+static String buildDependency(String pack, String dependency, String version) {
+    return "${pack}:${dependency}:${version}"
+}
