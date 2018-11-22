@@ -1,6 +1,6 @@
 package com.lterminiello.privaliachallenge.repository;
 
-import com.lterminiello.privaliachallenge.datasource.RemoteTraktTvDataSource;
+import com.lterminiello.privaliachallenge.datasource.TraktTvDataSource;
 import com.lterminiello.privaliachallenge.datasource.RemoteTraktTvDataSourceImp;
 import com.lterminiello.privaliachallenge.model.Movie;
 import com.lterminiello.privaliachallenge.model.SearchItem;
@@ -19,21 +19,21 @@ public class TraktTvRepositoryImp implements TraktTvRepository {
         return instance;
     }
 
-    private RemoteTraktTvDataSource remoteTraktTvDataSource;
+    private TraktTvDataSource traktTvDataSource;
 
-    public TraktTvRepositoryImp(RemoteTraktTvDataSource remoteTraktTvDataSource) {
-        this.remoteTraktTvDataSource = remoteTraktTvDataSource;
+    public TraktTvRepositoryImp(TraktTvDataSource remoteTraktTvDataSource) {
+        this.traktTvDataSource = remoteTraktTvDataSource;
     }
 
     @Override
     public Single<List<Movie>> getPopulars(final int page) {
-        Single<List<Movie>> resultSingle = remoteTraktTvDataSource.getPopulars(page);
+        Single<List<Movie>> resultSingle = traktTvDataSource.getPopulars(page);
         return resultSingle;
     }
 
     @Override
-    public Single<List<SearchItem>> getMovies(final String query, final int page) {
-        Single<List<SearchItem>> resultSingle = remoteTraktTvDataSource.getMovies(query, page);
+    public Single<List<Movie>> getMovies(final String query, final int page) {
+        Single<List<Movie>> resultSingle = traktTvDataSource.getMovies(query, page);
         return resultSingle;
     }
 }

@@ -1,6 +1,6 @@
 package com.lterminiello.privaliachallenge.usecase.movie;
 
-import com.lterminiello.privaliachallenge.model.SearchItem;
+import com.lterminiello.privaliachallenge.model.Movie;
 import com.lterminiello.privaliachallenge.repository.TraktTvRepository;
 import com.lterminiello.privaliachallenge.usecase.AbstractPaginateUseCase;
 import com.lterminiello.privaliachallenge.utils.Lists;
@@ -9,7 +9,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
-public class TracktTvSearchListUseCase extends AbstractPaginateUseCase<List<SearchItem>> {
+public class TracktTvSearchListUseCase extends AbstractPaginateUseCase<List<Movie>> {
 
     private TraktTvRepository traktTvRepository;
     private boolean isLastPage = false;

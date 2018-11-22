@@ -9,6 +9,6 @@ public interface TraktTvRepository {
 
     Single<List<Movie>> getPopulars(int page);
 
-    Single<List<SearchItem>> getMovies(String query, int page);
+    Single<List<Movie>> getMovies(String query, int page);
 
 }

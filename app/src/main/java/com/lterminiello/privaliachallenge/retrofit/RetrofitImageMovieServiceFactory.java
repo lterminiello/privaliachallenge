@@ -4,25 +4,24 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 
+public class RetrofitImageMovieServiceFactory extends AbstractRetrofitServiceFactory {
 
-public class RetrofitTraktTvServiceFactory extends AbstractRetrofitServiceFactory {
+    private static RetrofitImageMovieServiceFactory instance;
 
-    private static RetrofitTraktTvServiceFactory instance;
-
-    public static RetrofitTraktTvServiceFactory getInstance(){
+    public static RetrofitImageMovieServiceFactory getInstance(){
         if (instance == null){
-            instance = new RetrofitTraktTvServiceFactory();
+            instance = new RetrofitImageMovieServiceFactory();
         }
         return instance;
     }
 
-    public RetrofitTraktTvService getRetrofitTraktTvService() {
-        return getRetrofit().create(RetrofitTraktTvService.class);
+    public RetrofitImageMovieService getRetrofitImageMovieService() {
+        return getRetrofit().create(RetrofitImageMovieService.class);
     }
 
     @Override
     protected String getBaseUrl() {
-        return "https://api.trakt.tv";
+        return "http://webservice.fanart.tv";
     }
 
     @Override
@@ -33,14 +32,11 @@ public class RetrofitTraktTvServiceFactory extends AbstractRetrofitServiceFactor
 
             //add full info movie
             HttpUrl url = originalHttpUrl.newBuilder()
-                .addQueryParameter("extended", "full")
+                .addQueryParameter("api_key", "dfb9e828d65f5b7fc6517aebdf7c9399")
                 .build();
 
             // Request customization: add request headers apikey and others
             Request.Builder requestBuilder = original.newBuilder()
-                .addHeader("Content-Type", "application/json")
-                .addHeader("trakt-api-version", "2")
-                .addHeader("trakt-api-key", "019a13b1881ae971f91295efc7fdecfa48b32c2a69fe6dd03180ff59289452b8")
                 .url(url);
 
             Request request = requestBuilder.build();
