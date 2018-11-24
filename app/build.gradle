@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin:'com.android.application'
 
 android {
     compileSdkVersion 28
@@ -46,6 +46,9 @@ dependencies {
 
     implementation archLifecycleDependencies.extensions
     implementation archLifecycleDependencies.test
+    implementation archLifecycleDependencies.room
+    implementation archLifecycleDependencies.roomRxjava2
+    annotationProcessor archLifecycleDependencies.roomAnnotation
 
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.gson
@@ -63,15 +66,15 @@ dependencies {
     testImplementation testingDependencies.mockito
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2') {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group:'com.android.support', module:'support-annotations'
     }
     androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2') {
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude module: 'recyclerview-v7'
+        exclude group:'com.android.support', module:'appcompat'
+        exclude group:'com.android.support', module:'support-v4'
+        exclude module:'recyclerview-v7'
     }
     androidTestImplementation('com.android.support.test:runner:0.3') {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group:'com.android.support', module:'support-annotations'
     }
 
 }

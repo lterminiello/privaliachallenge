@@ -18,6 +18,7 @@ public abstract class AbstractPaginateUseCase<T> extends AbstractBaseUseCase<T> 
     public void resetPage(){
         totalItemArchived = 0;
         page = 1;
+
     }
 
     protected int getCurrentOffset(){

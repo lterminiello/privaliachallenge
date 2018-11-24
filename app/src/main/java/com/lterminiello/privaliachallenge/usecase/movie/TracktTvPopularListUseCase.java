@@ -42,4 +42,10 @@ public class TracktTvPopularListUseCase extends AbstractPaginateUseCase<List<Mov
     public boolean isLastPage() {
         return isLastPage;
     }
+
+    @Override
+    public void resetPage() {
+        super.resetPage();
+        isLastPage = false;
+    }
 }

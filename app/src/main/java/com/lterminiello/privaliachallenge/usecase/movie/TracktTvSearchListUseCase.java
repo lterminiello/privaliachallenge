@@ -43,6 +43,18 @@ public class TracktTvSearchListUseCase extends AbstractPaginateUseCase<List<Movi
         return isLastPage;
     }
 
+    @Override
+    public void cancel() {
+        super.cancel();
+        query = null;
+    }
+
+    @Override
+    public void resetPage() {
+        super.resetPage();
+        isLastPage = false;
+    }
+
     public void setQuery(final String query) {
         this.query = query;
     }

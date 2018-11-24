@@ -18,7 +18,6 @@ ext {
 
     stethoVersion = '1.4.2'
 
-
     //Packages
     supportPackage = 'com.android.support'
     constaintSupportPackage = 'com.android.support.constraint'
@@ -26,6 +25,8 @@ ext {
     retrofitPackage = 'com.squareup.retrofit2'
     archLifecycle = 'android.arch.lifecycle'
     archCore = 'android.arch.core'
+    archPersistence = 'android.arch.persistence.room'
+
 
 
     reactivePackage = 'io.reactivex.rxjava2'
@@ -39,33 +40,35 @@ ext {
 
     supportDependencies = [
 
-            design      : buildDependency(supportPackage, 'design', supportVersion),
-            recyclerView: buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
-            cardView    : buildDependency(supportPackage, 'cardview-v7', supportVersion),
-            appCompat   : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
-            support     : buildDependency(supportPackage, 'support-v4', supportVersion),
+        design      :buildDependency(supportPackage, 'design', supportVersion),
+        recyclerView:buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
+        cardView    :buildDependency(supportPackage, 'cardview-v7', supportVersion),
+        appCompat   :buildDependency(supportPackage, 'appcompat-v7', supportVersion),
+        support     :buildDependency(supportPackage, 'support-v4', supportVersion),
 
-            constraint  : buildDependency(constaintSupportPackage, 'constraint-layout', constaintVersion)
+        constraint  :buildDependency(constaintSupportPackage, 'constraint-layout', constaintVersion)
     ]
 
     archLifecycleDependencies = [
 
-            extensions: buildDependency(archLifecycle, 'extensions', archLifecycleVersion),
-            test      : buildDependency(archCore, 'core-testing', archLifecycleVersion),
-
+        extensions    :buildDependency(archLifecycle, 'extensions', archLifecycleVersion),
+        test          :buildDependency(archCore, 'core-testing', archLifecycleVersion),
+        room          :buildDependency(archPersistence, 'runtime', archLifecycleVersion),
+        roomAnnotation:buildDependency(archPersistence, 'compiler', archLifecycleVersion),
+        roomRxjava2   :buildDependency(archPersistence, 'rxjava2', archLifecycleVersion)
     ]
 
     retrofitDependencies = [
 
-            retrofit     : buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
-            gson         : buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
-            rxAdapterJava: buildDependency(retrofitPackage, 'adapter-rxjava2', retrofitVersion)
+        retrofit     :buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
+        gson         :buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
+        rxAdapterJava:buildDependency(retrofitPackage, 'adapter-rxjava2', retrofitVersion)
     ]
 
     rxDependencies = [
 
-            rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion),
-            rxJava   : buildDependency(reactivePackage, 'rxjava', rxJavaVersion)
+        rxAndroid:buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion),
+        rxJava   :buildDependency(reactivePackage, 'rxjava', rxJavaVersion)
     ]
 
     stetho = buildDependency(facebookStethoPackage, 'stetho', stethoVersion)
@@ -76,8 +79,8 @@ ext {
 
     testingDependencies = [
 
-            junit  : buildDependency(junitPackage, 'junit', junitVersion),
-            mockito: buildDependency(mockitoPackage, 'mockito-core', mockitoVersion)
+        junit  :buildDependency(junitPackage, 'junit', junitVersion),
+        mockito:buildDependency(mockitoPackage, 'mockito-core', mockitoVersion)
 
     ]
 }

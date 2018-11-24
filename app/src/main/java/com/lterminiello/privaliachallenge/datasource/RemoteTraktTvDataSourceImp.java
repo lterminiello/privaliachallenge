@@ -32,13 +32,24 @@ public class RemoteTraktTvDataSourceImp implements TraktTvDataSource {
         return observable;
     }
 
+    /* @Override
+     public Single<List<Movie>> getMovies(final String query, final int page) {
+         List<Movie> listMovie = Lists.newArrayList();
+         List<SearchItem> listSearchItem = retrofitTraktTvService.getMoviees(query, page).toObservable().blockingFirst();
+         for (SearchItem searchItem: listSearchItem) {
+             listMovie.add(searchItem.getMovie());
+         }
+         return Single.just(listMovie);
+     }*/
+
     @Override
     public Single<List<Movie>> getMovies(final String query, final int page) {
-        List<Movie> listMovie = Lists.newArrayList();
-        List<SearchItem> listSearchItem = retrofitTraktTvService.getMoviees(query, page).toObservable().blockingFirst();
-        for (SearchItem searchItem: listSearchItem) {
-            listMovie.add(searchItem.getMovie());
-        }
-        return Single.just(listMovie);
+        return retrofitTraktTvService.getMoviees(query, page).flatMap(searchItems -> {
+            List<Movie> mapperList = Lists.newArrayList();
+            for (SearchItem item : searchItems) {
+                mapperList.add(item.getMovie());
+            }
+            return Single.just(mapperList);
+        });
     }
 }
