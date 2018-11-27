@@ -57,8 +57,8 @@ dependencies {
     implementation rxDependencies.rxAndroid
     implementation rxDependencies.rxJava
 
-    implementation glide
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation glide.glide
+    annotationProcessor glide.glideCompiler
 
     implementation stetho
     implementation stethoOkhttp

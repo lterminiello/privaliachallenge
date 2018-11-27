@@ -73,7 +73,10 @@ ext {
 
     stetho = buildDependency(facebookStethoPackage, 'stetho', stethoVersion)
 
-    glide = buildDependency(glidePackage, 'glide', glideVersion)
+    glide = [
+        glide :buildDependency(glidePackage, 'glide', glideVersion),
+        glideCompiler  :buildDependency(glidePackage, 'compiler', glideVersion)
+    ]
 
     stethoOkhttp = buildDependency(facebookStethoPackage, 'stetho-okhttp3', stethoVersion)
 
