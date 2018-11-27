@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Privalia Challenge</string>
     <string name="searchLabel">Search movie</string>
-    <string name="errorInfo">"Oops, something went wrong"</string>
+    <string name="errorInfo">Oops, something went wrong</string>
+    <string name="noMovies">Oops, no movies with this name were found!!</string>
 
 </resources>

@@ -18,13 +18,14 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     private TracktTvPopularListUseCase popularListUseCase;
     private TracktTvSearchListUseCase searchListUseCase;
-    private Context context;
     private String query;
 
     private ObservableBoolean availabilityItems = new ObservableBoolean(false);
+    private ObservableBoolean loading = new ObservableBoolean(false);
+    private ObservableBoolean noResult = new ObservableBoolean(false);
+
     private MutableLiveData<Boolean> loadingPagination = new MutableLiveData<>();
     private MutableLiveData<Boolean> error = new MutableLiveData<>();
-    private ObservableBoolean newSearch = new ObservableBoolean(false);
     private MutableLiveData<List<Movie>> moviesData = new MutableLiveData<>();
 
     public MovieListViewModel(final TracktTvPopularListUseCase popularListUseCase,
@@ -32,14 +33,13 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
         this.popularListUseCase = popularListUseCase;
         this.searchListUseCase = searchListUseCase;
-        this.context = context;
         this.popularListUseCase.setDefaultUseCaseCallback(this);
         this.searchListUseCase.setDefaultUseCaseCallback(this);
         loadingPagination.postValue(false);
     }
 
     public void getMovies(@Nullable String query) {
-        newSearch.set(true);
+        moviesData.setValue(null);
         popularListUseCase.cancel();
         searchListUseCase.cancel();
         searchListUseCase.resetPage();
@@ -69,23 +69,29 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     @Override
     public void onStart() {
+        loading.set(Lists.isNullOrEmpty(moviesData.getValue()));
         availabilityItems.set(!Lists.isNullOrEmpty(moviesData.getValue()));
     }
 
     @Override
     public void onSuccess(final List<Movie> response) {
-        error.setValue(false);
         loadingPagination.setValue(false);
-        newSearch.set(false);
-        moviesData.setValue(response);
-        availabilityItems.set(true);
+        loading.set(false);
+        if (Lists.isNullOrEmpty(moviesData.getValue()) && Lists.isNullOrEmpty(response)) {
+            noResult.set(true);
+        } else {
+            moviesData.setValue(response);
+            availabilityItems.set(true);
+            noResult.set(false);
+        }
+
     }
 
     @Override
     public void onError(final String message) {
         error.setValue(true);
+        loading.set(false);
         loadingPagination.setValue(false);
-        newSearch.set(false);
     }
 
     public ObservableBoolean getAvailabilityItems() {
@@ -96,9 +102,6 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
         return loadingPagination;
     }
 
-    public ObservableBoolean getNewSearch() {
-        return newSearch;
-    }
 
     public MutableLiveData<List<Movie>> getMoviesData() {
         return moviesData;
@@ -106,5 +109,13 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     public MutableLiveData<Boolean> getError() {
         return error;
+    }
+
+    public ObservableBoolean getLoading() {
+        return loading;
+    }
+
+    public ObservableBoolean getNoResult() {
+        return noResult;
     }
 }

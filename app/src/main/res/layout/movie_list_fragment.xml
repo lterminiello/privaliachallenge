@@ -15,8 +15,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="@color/ticketBackgraound"
         android:layout_height="match_parent"
+        android:background="@color/ticketBackgraound"
         android:fitsSystemWindows="true">
 
 
@@ -47,12 +47,34 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
+
+        <RelativeLayout
+            android:id="@+id/no_result_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.noResult? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="16dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@string/noMovies"
+                android:textColor="@android:color/white"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/container_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewModel.availabilityItems? View.GONE : View.VISIBLE}"
-            tools:visibility="visible">
+            android:visibility="@{viewModel.loading? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
 
             <ProgressBar
                 android:id="@+id/loading"

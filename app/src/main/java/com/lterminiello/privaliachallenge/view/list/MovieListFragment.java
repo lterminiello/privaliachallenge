@@ -23,7 +23,6 @@ import com.lterminiello.privaliachallenge.R;
 import com.lterminiello.privaliachallenge.TrackTvApplication;
 import com.lterminiello.privaliachallenge.databinding.MovieListFragmentBinding;
 import com.lterminiello.privaliachallenge.usecase.UseCaseFactory;
-import com.lterminiello.privaliachallenge.utils.Lists;
 import com.lterminiello.privaliachallenge.utils.RecyclerViewScrollListener;
 import com.lterminiello.privaliachallenge.utils.SnackbarUtils;
 import com.lterminiello.privaliachallenge.utils.StringUtils;
@@ -91,10 +90,7 @@ public class MovieListFragment extends Fragment {
 
     private void subscriberObserver() {
         viewModel.getMoviesData().observe(this, movies -> {
-            if (Lists.isNullOrEmpty(movies) && adapter.getItemCount() > 0) {
-
-                return;
-            }
+            binding.noResultView.setVisibility(View.GONE);
             adapter.setResultList(movies);
         });
 
