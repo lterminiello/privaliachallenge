@@ -7,7 +7,6 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import com.lterminiello.privaliachallenge.model.MovieImage;
 import io.reactivex.Maybe;
-import io.reactivex.Single;
 import java.util.List;
 
 @Dao
@@ -28,5 +27,8 @@ public interface MovieImageDao {
     void delete(MovieImage movieImages);
 
     @Update
-    public void updateUsers(MovieImage... movieImages);
+    void updateMovieImage(MovieImage... movieImages);
+
+    @Query("DELETE FROM images")
+    public void nukeTable();
 }

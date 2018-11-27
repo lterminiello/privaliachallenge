@@ -4,7 +4,6 @@ import com.lterminiello.privaliachallenge.model.SearchImageResponse;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface RetrofitImageMovieService {
 

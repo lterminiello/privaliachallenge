@@ -1,15 +1,10 @@
 package com.lterminiello.privaliachallenge.datasource;
 
-import com.lterminiello.privaliachallenge.model.Movie;
-import com.lterminiello.privaliachallenge.model.SearchImageResponse;
-import com.lterminiello.privaliachallenge.model.SearchItem;
+
 import com.lterminiello.privaliachallenge.retrofit.RetrofitImageMovieService;
 import com.lterminiello.privaliachallenge.retrofit.RetrofitImageMovieServiceFactory;
-import com.lterminiello.privaliachallenge.retrofit.RetrofitTraktTvService;
-import com.lterminiello.privaliachallenge.retrofit.RetrofitTraktTvServiceFactory;
 import com.lterminiello.privaliachallenge.utils.Lists;
 import io.reactivex.Single;
-import java.util.List;
 
 public class RemoteImageMovieDataSourceImp implements ImageMovieDataSource {
 

@@ -1,6 +1,5 @@
 package com.lterminiello.privaliachallenge.repository;
 
-import com.lterminiello.privaliachallenge.model.SearchImageResponse;
 import io.reactivex.Single;
 import retrofit2.http.Path;
 

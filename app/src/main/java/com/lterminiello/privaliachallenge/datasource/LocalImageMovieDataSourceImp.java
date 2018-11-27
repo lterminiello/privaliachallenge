@@ -4,7 +4,6 @@ import com.lterminiello.privaliachallenge.model.MovieImage;
 import com.lterminiello.privaliachallenge.room.AppDatabase;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-import io.reactivex.functions.Consumer;
 
 public class LocalImageMovieDataSourceImp implements ImageMovieDataSource {
 

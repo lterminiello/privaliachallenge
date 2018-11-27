@@ -2,6 +2,7 @@ package com.lterminiello.privaliachallenge.view.list;
 
 import android.databinding.DataBindingUtil;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,9 +43,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
         MovieListItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
             , R.layout.movie_list_item, parent, false);
-       /*TODO if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {   ????????
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             binding.productImage.setClipToOutline(true);
-        }*/
+        }
         return new MovieViewHolder(binding, useCaseFactory.getImageMovieUseCase());
     }
 
@@ -129,8 +130,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private class LoadingViewHolder extends RecyclerView.ViewHolder {
-
-        ProgressItemBinding progressItemBinding;
 
         public LoadingViewHolder(ProgressItemBinding progressItemBinding) {
             super(progressItemBinding.container);

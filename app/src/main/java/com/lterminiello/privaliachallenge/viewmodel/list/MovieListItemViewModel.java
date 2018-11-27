@@ -3,11 +3,13 @@ package com.lterminiello.privaliachallenge.viewmodel.list;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
-import com.bumptech.glide.Glide;
+import com.lterminiello.privaliachallenge.R;
 import com.lterminiello.privaliachallenge.model.Movie;
 import com.lterminiello.privaliachallenge.usecase.DefaultUseCaseCallback;
 import com.lterminiello.privaliachallenge.usecase.UseCaseUtils;
 import com.lterminiello.privaliachallenge.usecase.movie.ImageMovieUseCase;
+import com.lterminiello.privaliachallenge.utils.GlideApp;
+import com.lterminiello.privaliachallenge.utils.StringUtils;
 
 public class MovieListItemViewModel extends BaseObservable implements DefaultUseCaseCallback<String> {
 
@@ -21,27 +23,34 @@ public class MovieListItemViewModel extends BaseObservable implements DefaultUse
         imageMovieUseCase.setDefaultUseCaseCallback(this);
         imageMovieUseCase.setImdbId(movie.getIds().get("imdb"));
         UseCaseUtils.execute(imageMovieUseCase);
+        imageUrl = "";
+        notifyChange();
     }
 
     public String getTitle() {
-        return movie.getTitle();
+        return movie.getTitle() + StringUtils.SPACE + "(" + movie.getYear() + ")";
+    }
+
+    public String getDescription() {
+        return movie.getOverview();
     }
 
     @BindingAdapter({ "bind:imageUrl" })
     public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext()).load(imageUrl).into(view);
+        GlideApp.with(view.getContext()).load(imageUrl).error(R.drawable.ticket).placeholder(R.drawable.ticket).into(view);
     }
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+        imageUrl = "";
         imageMovieUseCase.setImdbId(movie.getIds().get("imdb"));
         UseCaseUtils.execute(imageMovieUseCase);
+        notifyChange();
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
-
 
     public Movie getResult() {
         return movie;
@@ -60,6 +69,5 @@ public class MovieListItemViewModel extends BaseObservable implements DefaultUse
 
     @Override
     public void onError(final String message) {
-        notifyChange();
     }
 }

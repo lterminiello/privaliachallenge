@@ -1,9 +1,8 @@
 package com.lterminiello.privaliachallenge.repository;
 
-import com.lterminiello.privaliachallenge.datasource.TraktTvDataSource;
 import com.lterminiello.privaliachallenge.datasource.RemoteTraktTvDataSourceImp;
+import com.lterminiello.privaliachallenge.datasource.TraktTvDataSource;
 import com.lterminiello.privaliachallenge.model.Movie;
-import com.lterminiello.privaliachallenge.model.SearchItem;
 import io.reactivex.Single;
 import java.util.List;
 

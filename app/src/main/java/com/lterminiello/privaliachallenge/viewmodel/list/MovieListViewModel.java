@@ -23,6 +23,7 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     private ObservableBoolean availabilityItems = new ObservableBoolean(false);
     private MutableLiveData<Boolean> loadingPagination = new MutableLiveData<>();
+    private MutableLiveData<Boolean> error = new MutableLiveData<>();
     private ObservableBoolean newSearch = new ObservableBoolean(false);
     private MutableLiveData<List<Movie>> moviesData = new MutableLiveData<>();
 
@@ -73,14 +74,16 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     @Override
     public void onSuccess(final List<Movie> response) {
+        error.setValue(false);
         loadingPagination.setValue(false);
         newSearch.set(false);
         moviesData.setValue(response);
-        availabilityItems.set(!Lists.isNullOrEmpty(moviesData.getValue()));
+        availabilityItems.set(true);
     }
 
     @Override
     public void onError(final String message) {
+        error.setValue(true);
         loadingPagination.setValue(false);
         newSearch.set(false);
     }
@@ -99,5 +102,9 @@ public class MovieListViewModel extends ViewModel implements DefaultUseCaseCallb
 
     public MutableLiveData<List<Movie>> getMoviesData() {
         return moviesData;
+    }
+
+    public MutableLiveData<Boolean> getError() {
+        return error;
     }
 }

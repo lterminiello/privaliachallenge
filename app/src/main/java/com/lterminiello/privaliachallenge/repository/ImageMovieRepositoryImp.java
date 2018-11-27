@@ -3,15 +3,10 @@ package com.lterminiello.privaliachallenge.repository;
 import com.lterminiello.privaliachallenge.datasource.ImageMovieDataSource;
 import com.lterminiello.privaliachallenge.datasource.LocalImageMovieDataSourceImp;
 import com.lterminiello.privaliachallenge.datasource.RemoteImageMovieDataSourceImp;
-import com.lterminiello.privaliachallenge.datasource.RemoteTraktTvDataSourceImp;
-import com.lterminiello.privaliachallenge.datasource.TraktTvDataSource;
-import com.lterminiello.privaliachallenge.model.Movie;
 import com.lterminiello.privaliachallenge.model.MovieImage;
 import com.lterminiello.privaliachallenge.room.AppDatabase;
 import com.lterminiello.privaliachallenge.utils.StringUtils;
 import io.reactivex.Single;
-import java.util.List;
-import java.util.concurrent.Executor;
 
 public class ImageMovieRepositoryImp implements ImageMovieRepository {
 
